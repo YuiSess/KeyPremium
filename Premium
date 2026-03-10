@@ -1,0 +1,55 @@
+local validKeys = {
+    ["ABACAXI-123"] = nil,
+    ["ABACAXI-456"] = nil,
+    ["ABACAXI-789"] = nil
+}
+
+local player = game.Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui", game.CoreGui)
+gui.Name = "KeySystem"
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0,300,0,150)
+frame.Position = UDim2.new(0.5,-150,0.5,-75)
+frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1,0,0,40)
+title.BackgroundTransparency = 1
+title.Text = "Key System"
+title.TextColor3 = Color3.fromRGB(255,255,255)
+title.TextScaled = true
+
+local box = Instance.new("TextBox", frame)
+box.Size = UDim2.new(0.8,0,0,35)
+box.Position = UDim2.new(0.1,0,0.4,0)
+box.PlaceholderText = "Coloque sua key aqui"
+box.Text = ""
+
+local button = Instance.new("TextButton", frame)
+button.Size = UDim2.new(0.8,0,0,35)
+button.Position = UDim2.new(0.1,0,0.7,0)
+button.Text = "Verificar"
+
+button.MouseButton1Click:Connect(function()
+
+    local key = box.Text
+
+    if validKeys[key] == nil then
+        box.Text = "Key inválida"
+        return
+    end
+
+    if validKeys[key] == player.Name or validKeys[key] == nil then
+        validKeys[key] = player.Name
+
+        gui:Destroy()
+
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/YuiSess/Thuesye/refs/heads/main/Premium"))()
+
+    else
+        box.Text = "Key já usada"
+    end
+
+end)
