@@ -1,107 +1,73 @@
--- CONFIG
 local ScriptURL = "https://raw.githubusercontent.com/YuiSess/Thuesye/refs/heads/main/Premium"
 
 local player = game.Players.LocalPlayer
 local UserId = player.UserId
 
--- 100 KEYS
+-- KEYS (false = ainda não usada)
 local Keys = {
-["KEY-1001"]=nil,["KEY-1002"]=nil,["KEY-1003"]=nil,["KEY-1004"]=nil,["KEY-1005"]=nil,
-["KEY-1006"]=nil,["KEY-1007"]=nil,["KEY-1008"]=nil,["KEY-1009"]=nil,["KEY-1010"]=nil,
-["KEY-1011"]=nil,["KEY-1012"]=nil,["KEY-1013"]=nil,["KEY-1014"]=nil,["KEY-1015"]=nil,
-["KEY-1016"]=nil,["KEY-1017"]=nil,["KEY-1018"]=nil,["KEY-1019"]=nil,["KEY-1020"]=nil,
-["KEY-1021"]=nil,["KEY-1022"]=nil,["KEY-1023"]=nil,["KEY-1024"]=nil,["KEY-1025"]=nil,
-["KEY-1026"]=nil,["KEY-1027"]=nil,["KEY-1028"]=nil,["KEY-1029"]=nil,["KEY-1030"]=nil,
-["KEY-1031"]=nil,["KEY-1032"]=nil,["KEY-1033"]=nil,["KEY-1034"]=nil,["KEY-1035"]=nil,
-["KEY-1036"]=nil,["KEY-1037"]=nil,["KEY-1038"]=nil,["KEY-1039"]=nil,["KEY-1040"]=nil,
-["KEY-1041"]=nil,["KEY-1042"]=nil,["KEY-1043"]=nil,["KEY-1044"]=nil,["KEY-1045"]=nil,
-["KEY-1046"]=nil,["KEY-1047"]=nil,["KEY-1048"]=nil,["KEY-1049"]=nil,["KEY-1050"]=nil,
-["KEY-1051"]=nil,["KEY-1052"]=nil,["KEY-1053"]=nil,["KEY-1054"]=nil,["KEY-1055"]=nil,
-["KEY-1056"]=nil,["KEY-1057"]=nil,["KEY-1058"]=nil,["KEY-1059"]=nil,["KEY-1060"]=nil,
-["KEY-1061"]=nil,["KEY-1062"]=nil,["KEY-1063"]=nil,["KEY-1064"]=nil,["KEY-1065"]=nil,
-["KEY-1066"]=nil,["KEY-1067"]=nil,["KEY-1068"]=nil,["KEY-1069"]=nil,["KEY-1070"]=nil,
-["KEY-1071"]=nil,["KEY-1072"]=nil,["KEY-1073"]=nil,["KEY-1074"]=nil,["KEY-1075"]=nil,
-["KEY-1076"]=nil,["KEY-1077"]=nil,["KEY-1078"]=nil,["KEY-1079"]=nil,["KEY-1080"]=nil,
-["KEY-1081"]=nil,["KEY-1082"]=nil,["KEY-1083"]=nil,["KEY-1084"]=nil,["KEY-1085"]=nil,
-["KEY-1086"]=nil,["KEY-1087"]=nil,["KEY-1088"]=nil,["KEY-1089"]=nil,["KEY-1090"]=nil,
-["KEY-1091"]=nil,["KEY-1092"]=nil,["KEY-1093"]=nil,["KEY-1094"]=nil,["KEY-1095"]=nil,
-["KEY-1096"]=nil,["KEY-1097"]=nil,["KEY-1098"]=nil,["KEY-1099"]=nil,["KEY-1100"]=nil
+["KEY-1001"]=false,["KEY-1002"]=false,["KEY-1003"]=false,["KEY-1004"]=false,["KEY-1005"]=false,
+["KEY-1006"]=false,["KEY-1007"]=false,["KEY-1008"]=false,["KEY-1009"]=false,["KEY-1010"]=false,
+["KEY-1011"]=false,["KEY-1012"]=false,["KEY-1013"]=false,["KEY-1014"]=false,["KEY-1015"]=false,
+["KEY-1016"]=false,["KEY-1017"]=false,["KEY-1018"]=false,["KEY-1019"]=false,["KEY-1020"]=false,
+["KEY-1021"]=false,["KEY-1022"]=false,["KEY-1023"]=false,["KEY-1024"]=false,["KEY-1025"]=false,
+["KEY-1026"]=false,["KEY-1027"]=false,["KEY-1028"]=false,["KEY-1029"]=false,["KEY-1030"]=false,
+["KEY-1031"]=false,["KEY-1032"]=false,["KEY-1033"]=false,["KEY-1034"]=false,["KEY-1035"]=false,
+["KEY-1036"]=false,["KEY-1037"]=false,["KEY-1038"]=false,["KEY-1039"]=false,["KEY-1040"]=false,
+["KEY-1041"]=false,["KEY-1042"]=false,["KEY-1043"]=false,["KEY-1044"]=false,["KEY-1045"]=false,
+["KEY-1046"]=false,["KEY-1047"]=false,["KEY-1048"]=false,["KEY-1049"]=false,["KEY-1050"]=false,
+["KEY-1051"]=false,["KEY-1052"]=false,["KEY-1053"]=false,["KEY-1054"]=false,["KEY-1055"]=false,
+["KEY-1056"]=false,["KEY-1057"]=false,["KEY-1058"]=false,["KEY-1059"]=false,["KEY-1060"]=false,
+["KEY-1061"]=false,["KEY-1062"]=false,["KEY-1063"]=false,["KEY-1064"]=false,["KEY-1065"]=false,
+["KEY-1066"]=false,["KEY-1067"]=false,["KEY-1068"]=false,["KEY-1069"]=false,["KEY-1070"]=false,
+["KEY-1071"]=false,["KEY-1072"]=false,["KEY-1073"]=false,["KEY-1074"]=false,["KEY-1075"]=false,
+["KEY-1076"]=false,["KEY-1077"]=false,["KEY-1078"]=false,["KEY-1079"]=false,["KEY-1080"]=false,
+["KEY-1081"]=false,["KEY-1082"]=false,["KEY-1083"]=false,["KEY-1084"]=false,["KEY-1085"]=false,
+["KEY-1086"]=false,["KEY-1087"]=false,["KEY-1088"]=false,["KEY-1089"]=false,["KEY-1090"]=false,
+["KEY-1091"]=false,["KEY-1092"]=false,["KEY-1093"]=false,["KEY-1094"]=false,["KEY-1095"]=false,
+["KEY-1096"]=false,["KEY-1097"]=false,["KEY-1098"]=false,["KEY-1099"]=false,["KEY-1100"]=false
 }
 
--- ANTI SPAM
-local cooldown = false
-
--- UI
 local gui = Instance.new("ScreenGui",game.CoreGui)
-gui.Name = "PremiumKeySystem"
 
 local frame = Instance.new("Frame",gui)
-frame.Size = UDim2.new(0,420,0,220)
-frame.Position = UDim2.new(0.5,-210,0.5,-110)
-frame.BackgroundColor3 = Color3.fromRGB(18,18,18)
+frame.Size = UDim2.new(0,400,0,200)
+frame.Position = UDim2.new(0.5,-200,0.5,-100)
+frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
 
 local title = Instance.new("TextLabel",frame)
-title.Size = UDim2.new(1,0,0,50)
+title.Size = UDim2.new(1,0,0,40)
 title.BackgroundTransparency = 1
 title.Text = "Premium Key System"
 title.TextScaled = true
-title.TextColor3 = Color3.fromRGB(255,255,255)
+title.TextColor3 = Color3.new(1,1,1)
 
 local box = Instance.new("TextBox",frame)
 box.Size = UDim2.new(0.8,0,0,40)
-box.Position = UDim2.new(0.1,0,0.4,0)
+box.Position = UDim2.new(0.1,0,0.35,0)
 box.PlaceholderText = "Coloque sua key aqui"
-box.Text = ""
 
-local verify = Instance.new("TextButton",frame)
-verify.Size = UDim2.new(0.8,0,0,40)
-verify.Position = UDim2.new(0.1,0,0.65,0)
-verify.Text = "Verify Key"
+local button = Instance.new("TextButton",frame)
+button.Size = UDim2.new(0.8,0,0,40)
+button.Position = UDim2.new(0.1,0,0.65,0)
+button.Text = "Verify"
 
-local status = Instance.new("TextLabel",frame)
-status.Size = UDim2.new(1,0,0,25)
-status.Position = UDim2.new(0,0,0.85,0)
-status.BackgroundTransparency = 1
-status.TextColor3 = Color3.fromRGB(255,255,255)
-status.Text = ""
-
-verify.MouseButton1Click:Connect(function()
-
-    if cooldown then return end
-    cooldown = true
-
-    task.delay(3,function()
-        cooldown = false
-    end)
+button.MouseButton1Click:Connect(function()
 
     local key = box.Text
 
     if Keys[key] == nil then
-        status.Text = "Key inválida"
+        box.Text = "Key inválida"
         return
     end
 
     if Keys[key] == false then
-        status.Text = "Key já usada"
-        return
-    end
-
-    if Keys[key] == UserId then
-        status.Text = "Key válida"
-    end
-
-    if Keys[key] == nil then
         Keys[key] = UserId
     end
 
     if Keys[key] ~= UserId then
-        status.Text = "Key pertence a outro usuário"
+        box.Text = "Key usada por outro jogador"
         return
     end
-
-    status.Text = "Autenticado!"
-
-    task.wait(1)
 
     gui:Destroy()
 
